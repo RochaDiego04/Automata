@@ -203,7 +203,7 @@ private void setupTextDropListener() {
             automata = new Automata(txtAreaContent);
         }
         
-        automata.analizando();
+        automata.evaluateText();
     }//GEN-LAST:event_btn_startAutomataActionPerformed
 
     /**

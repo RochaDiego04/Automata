@@ -1,15 +1,20 @@
 
 package automata;
 
-/**
- *
- * @author Diego
- */
+import java.util.Map;
+
+
 public class Automata {
     private String txtToAnalize;
+    private final StateMachine stateMachine;
+    private final String initialState = "Q0";
+    private final String[] finalStates = {"Q2","Q5"};
+    public final Tokens tokens;
     
     public Automata(String txtToAnalize) {
         this.txtToAnalize = txtToAnalize;
+        this.stateMachine = new StateMachine();
+        this.tokens = new Tokens();
     }
     
     public void setTxtToAnalize(String txtToAnalize) {
@@ -19,9 +24,21 @@ public class Automata {
         return this.txtToAnalize;
     }
     
-    public void analizando(){ 
-        if(this.txtToAnalize.length() > 0) {
-        System.out.println("Analizando tu chingadera de " + this.getTxtToAnalize());
-        }
+    public void evaluateText() {
+
+    }
+        
+    private boolean isFinalState(String state) {
+
+    }
+
+    private void incrementToken(String token) {
+
+    }
+
+    public String transition(String currentState, char input) {
+
     }
 }
+
+
