@@ -139,8 +139,6 @@ private void setupTextDropListener() {
         txtArea_report.setRows(5);
         txtArea_report.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 255)));
         txtArea_report.setCaretColor(new java.awt.Color(153, 255, 255));
-        txtArea_report.setEnabled(false);
-        txtArea_report.setFocusable(false);
         jScrollPane1.setViewportView(txtArea_report);
 
         pnl_background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 250, 410));
@@ -190,7 +188,7 @@ private void setupTextDropListener() {
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         txtArea_textFile.setText("");
         if(automata != null){
-            automata.setTxtToAnalize("");
+            automata.setTxtToAnalyze("");
         }
     }//GEN-LAST:event_btn_clearActionPerformed
 
@@ -198,12 +196,14 @@ private void setupTextDropListener() {
         String txtAreaContent = txtArea_textFile.getText();
         
         if(automata != null){
-            automata.setTxtToAnalize(txtAreaContent);
+            automata.resetTokens();
+            automata.setTxtToAnalyze(txtAreaContent);
         }else {
             automata = new Automata(txtAreaContent);
         }
         
         automata.evaluateText();
+        txtArea_report.setText(automata.getTokenCount());
     }//GEN-LAST:event_btn_startAutomataActionPerformed
 
     /**
@@ -249,7 +249,7 @@ private void setupTextDropListener() {
     private javax.swing.JLabel lbl_dropbox;
     private javax.swing.JLabel lbl_title;
     private javax.swing.JPanel pnl_background;
-    private javax.swing.JTextArea txtArea_report;
+    public javax.swing.JTextArea txtArea_report;
     private javax.swing.JTextArea txtArea_textFile;
     // End of variables declaration//GEN-END:variables
 }

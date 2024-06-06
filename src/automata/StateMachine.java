@@ -28,59 +28,59 @@ public class StateMachine {
                     return "IDENT";
                 }
                  // (+, ++) Operador Aritmético suma e Incremento 
-                if (inputChar == '+') {
+                else if (inputChar == '+') {
                     return "OA1";
                 }
                  // (*, %) Operadores Aritméticos
-                if (inputChar == '*' || inputChar == '%') {
+                else if (inputChar == '*' || inputChar == '%') {
                     return "OA2";
                 }
                  // (-, --, int, -int, double, -double) Operador Aritmético resta, decremento, entero positivo, entero negativo o decimales
-                 if (isDigit(inputChar)) {
+                else if (isDigit(inputChar)) {
                     return "INT";
                 }
-                 if (inputChar == '-') {
+                else if (inputChar == '-') {
                     return "OA3";
                 }
                 // (/, //palabra, /*palabra*/) Operador aritmético division,  comentario en linea, comentario grande
-                 if (inputChar == '/') {
+                else if (inputChar == '/') {
                     return "OA4";
                 }
                 // (!, <= >= > < ==, =) Operador lógico negación, operadores relacionales o asignación
-                 if (inputChar == '!') {
+                else if (inputChar == '!') {
                     return "OPR_LOG1";
                 }
-                 if (inputChar == '<' || inputChar == '>') {
+                else if (inputChar == '<' || inputChar == '>') {
                     return "OPR_REL1";
                 }
-                 if (inputChar == '=') {
+                else if (inputChar == '=') {
                     return "ASIGN";
                 }
                 // (&&, ||, ( ), { }) Operador lógico de AND OR, parentesis, llave
-                if (inputChar == '&') {
+               else if (inputChar == '&') {
                     return "NA5";
                 }
-                 if (inputChar == '|' ) {
+               else  if (inputChar == '|' ) {
                     return "NA6";
                 }
-                 if (inputChar == '{' || inputChar == '}') {
+               else  if (inputChar == '{' || inputChar == '}') {
                     return "BRACE";
                 }
-                if (inputChar == '(' || inputChar == ')') {
+               else if (inputChar == '(' || inputChar == ')') {
                     return "PRNTHSIS";
                 }
                 // ("palabra") Cadena de texto string
-                if (inputChar == '"') {
+               else if (inputChar == '"') {
                     return "NA7";
                 }
-                break;
+
             
             // (palabra) Identificadores
             case "IDENT":
-                if (isLetter(inputChar) || isDigit(inputChar) || (isSpecialCharacter(inputChar) && inputChar == '_') ) {
+                if ( isLetter(inputChar) || isDigit(inputChar) || inputChar == '_' ) {
                     return "IDENT";
                 }
-                else if (isSpecialCharacter(inputChar) && inputChar != '_'){
+                else if (isSpecialCharacter(inputChar)){
                     return "ERROR";
                 }
                 break;
@@ -94,14 +94,14 @@ public class StateMachine {
             // (+, ++) Operador Aritmético suma e Incremento              
             case "OA1":
                 if (inputChar == '+') {
-                    return "INC";
+                    return "INCRMNT";
                 }
-                else if ( isLetter(inputChar) || isDigit(inputChar) || (isSpecialCharacter(inputChar) && inputChar != '+')) {
+                else if ( isLetter(inputChar) || isDigit(inputChar) || isSpecialCharacter(inputChar)) {
                     return "ERROR";
                 }
                 break;
             
-            case "INC":
+            case "INCRMNT":
                 if (isLetter(inputChar) || isDigit(inputChar) || isSpecialCharacter(inputChar)) {
                     return "ERROR";
                 }
@@ -122,16 +122,13 @@ public class StateMachine {
                 else if( inputChar == '-') {
                     return "DECRMNT";
                 }
-                else if( isLetter(inputChar) || (isSpecialCharacter(inputChar) && inputChar != '-')) {
+                else if( isLetter(inputChar) || isSpecialCharacter(inputChar) ) {
                     return "ERROR";
                 }
                 break;
                 
            case "DECRMNT":
-                if (isDigit(inputChar)) {
-                    return "INT";
-                }
-                else if( inputChar == '-') {
+                if( inputChar == '-') {
                     return "DECRMT";
                 }
                 else if( isLetter(inputChar) || isDigit(inputChar) || isSpecialCharacter(inputChar)) {
@@ -146,7 +143,7 @@ public class StateMachine {
                 else if( inputChar == '.') {
                     return "NA1";
                 }
-               else if( isLetter(inputChar) || (isSpecialCharacter(inputChar) && inputChar != '.')) {
+               else if( isLetter(inputChar) || isSpecialCharacter(inputChar) ) {
                     return "ERROR";
                 }
                 break;
@@ -171,13 +168,10 @@ public class StateMachine {
              
             // (/, //palabra, /*palabra*/) Operador aritmético division,  comentario en linea, comentario grande
             case "OA4":
-                if (isDigit(inputChar)) {
-                    return "DECIMAL";
-                }
-                else if(isSpecialCharacter(inputChar) && inputChar == '*') {
+                if(inputChar == '*') {
                     return "NA2";
                 }
-                else if(isSpecialCharacter(inputChar) && inputChar == '/') {
+                else if(inputChar == '/') {
                     return "NA3";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -186,7 +180,7 @@ public class StateMachine {
                 break;
                 
              case "NA2":
-                if (isSpecialCharacter(inputChar) && inputChar == '*') {
+                if (inputChar == '*') {
                     return "NA4";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -194,11 +188,11 @@ public class StateMachine {
                 }
                 break;
                 
-           case "N4":
-                if (isSpecialCharacter(inputChar) && inputChar == '*') {
+           case "NA4":
+                if ( inputChar == '*') {
                     return "NA4";
                 }
-                else if (isSpecialCharacter(inputChar) && inputChar == '/') {
+                else if (inputChar == '/') {
                     return "COM_ML";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -226,7 +220,7 @@ public class StateMachine {
             
              // (!, <= >= > < ==, =) Operador lógico negación, operadores relacionales o asignación      
             case "OPR_LOG1":
-                if (isSpecialCharacter(inputChar) && inputChar == '=') {
+                if (inputChar == '=') {
                     return "OPR_REL2";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -235,7 +229,7 @@ public class StateMachine {
                 break;
                 
             case "OPR_REL1":
-                if (isSpecialCharacter(inputChar) && inputChar == '=') {
+                if (inputChar == '=') {
                     return "OPR_REL2";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -244,7 +238,7 @@ public class StateMachine {
                 break;
                 
              case "ASIGN":
-                if (isSpecialCharacter(inputChar) && inputChar == '=') {
+                if (inputChar == '=') {
                     return "OPR_REL2";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -260,7 +254,7 @@ public class StateMachine {
                 
              // (&&, ||, ( ), { }) Operador lógico de AND OR, parentesis, llave
               case "NA5":
-                if (isSpecialCharacter(inputChar) && inputChar == '&') {
+                if (inputChar == '&') {
                     return "OPR_LOG2";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -269,7 +263,7 @@ public class StateMachine {
                 break;
                 
               case "NA6":
-                if (isSpecialCharacter(inputChar) && inputChar == '|') {
+                if (inputChar == '|') {
                     return "OPR_LOG2";
                 }
                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -300,16 +294,7 @@ public class StateMachine {
                     return "NA8";
                     
              case "NA8":
-                 if(isSpecialCharacter(inputChar) && inputChar == '"') {
-                     return "STRING";
-                 }
-                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
-                    return "ERROR";
-                }
-                break;
-                
-              case "STRING":
-                 if(isSpecialCharacter(inputChar) && inputChar == '"') {
+                 if(inputChar == '"') {
                      return "STRING";
                  }
                  else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
@@ -317,17 +302,43 @@ public class StateMachine {
                 }
                 break;
                 
-             // Other cases
-            default:
+              case "STRING":
+                 if(inputChar == '"') {
+                     return "STRING";
+                 }
+                 else if(isLetter(inputChar) || isSpecialCharacter(inputChar) || isDigit(inputChar)) {
+                    return "NA8";
+                }
                 break;
-          
+                
+              case "ERROR":
+                    return "ERROR";
         }
         return "ERROR"; 
     
     }
     
-    public static void main(String[] args) {
-        StateMachine stateMachine = new StateMachine();
-        //System.out.println(stateMachine.isSpecialCharacter('%'));
+public static void main(String[] args) {
+    StateMachine stateMachine = new StateMachine();
+    String input = "/*comentario*ooo*/ + 123 -- ++ int double 1.5 //hola / <= # | \"hola\"aa\" ( ).";
+    String initialState = "Q1";
+
+    System.out.println("Input: " + input);
+
+    String[] tokens = input.split(" ");
+    for (String token : tokens) {
+        String currentState = initialState;
+        System.out.println("\nProcessing token: " + token);
+        for (char ch : token.toCharArray()) {
+            String nextState = stateMachine.getNextState(currentState, ch);
+            System.out.println("Character: '" + ch + "' -> Current State: " + currentState + " -> Next State: " + nextState);
+            currentState = nextState;
+            if (currentState.equals("ERROR")) {
+                break;
+            }
+        }
+        System.out.println("Final State for token '" + token + "': " + currentState);
     }
+}
+
 }

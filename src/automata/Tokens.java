@@ -30,20 +30,20 @@ public class Tokens {
 }
 
 /* 
-Palabras reservadas: Keywords
-Identificadores: Identifiers
-Operadores Relacionales: Relational Operators
-Operadores Lógicos: Logical Operators
-Operadores Aritméticos: Arithmetic Operators
-Asignaciones: Assignments
-Número Enteros: Integers
-Números Decimales: Decimal Numbers
-Incremento: Increment (aunque especificaste 0, la palabra en inglés es "Increment")
-Decremento: Decrement
-Cadena de caracteres: String
-Comentario: Comment
-Comentario de Linea: Line Comment (aunque especificaste 0, la traducción es "Line Comment")
-Paréntesis: Parentheses
-Llaves: Braces o Curly Braces
-Errores: Errors 
+Palabras reservadas: Keywords 
+Identificadores: Identifiers "IDENT",
+Operadores Relacionales: Relational Operators  "OPR_REL1", "OPR_REL2"
+Operadores Lógicos: Logical Operators  "OPR_LOG1", "OPR_LOG2"
+Operadores Aritméticos: Arithmetic Operators "OA1", "OA2", "OA3" "OA4"
+Asignaciones: Assignments "ASIGN"
+Número Enteros: Integers "INT"
+Números Decimales: Decimal Numbers  "DECIMAL"
+Incremento: Increment  "INCRMNT"
+Decremento: Decrement  "DECRMNT"
+Cadena de caracteres: String  "STRING"
+Comentario: Comment   "COM_ML"
+Comentario de Linea: Line Comment  "COM_LIN"
+Paréntesis: Parentheses  "PRNTHSIS"
+Llaves: Braces o Curly Braces  "BRACE"
+Errores: Errors   "ERROR"
 */
